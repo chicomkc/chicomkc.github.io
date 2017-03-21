@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -8,62 +8,68 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
+</head>
 
-  <body>
-  <nav style="background-color: #009688">
-    <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo" style="margin: 0 0 0 16px">Chico MKC</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="">Sample Link</a></li>
-      </ul>
-    </div>
-  </nav>
-  <br>
-  <div class="container">
-    <div class="row card center" style="padding:16px">
-      <div class="col m6 s12">
-        <h5>Number of switches</h5>
-      </div>
-      <div class="col m6 s12">
-        <input placeholder="62" id="num_switches" type="text">
-      </div>
-      <div class="col m6 s12">
-        <h5>Number of Plates</h5>
-      </div>
-      <div class="col m6 s12">
-        <input placeholder="5" id="num_plates" type="text">
-      </div>
-      <button class="btn waves-effect waves-light" data-target="price_modal" id='modal_btn' style="margin: 8px">Calculate
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
-  </div>
+<body>
+    <nav style="background-color: #009688">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo" style="padding: 0 16px 0 16px">Chico MKC</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="">Sample Link</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="">Sample Link</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <div id="price_modal" class="modal">
-    <div class="modal-content center">
-      <h3>Price</h3>
-      <h1 id="price_evaluated"></h1>
+    <br>
+    <div class="container">
+        <div class="row card center" style="padding:16px">
+            <div class="col m6 s12">
+                <h5>Number of switches</h5>
+            </div>
+            <div class="col m6 s12">
+                <input placeholder="62" id="num_switches" type="text">
+            </div>
+            <div class="col m6 s12">
+                <h5>Number of Plates</h5>
+            </div>
+            <div class="col m6 s12">
+                <input placeholder="5" id="num_plates" type="text">
+            </div>
+            <button class="btn waves-effect waves-light" data-target="price_modal" id='modal_btn' style="margin: 8px">Calculate
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+
+    <div id="price_modal" class="modal">
+        <div class="modal-content center">
+            <h3>Price</h3>
+            <h1 id="price_evaluated"></h1>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
     </div>
-  </div>
-  <!--Import jQuery before materialize.js-->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-          crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script>
-      $(document).ready(function(){
-          $('.modal').modal();
-          $('#modal_btn').click(function(){
-              var a = $('#num_switches').val();
-              var b = $('#num_plates').val();
-              var c = Math.ceil((5.5 / 60) * a * b * 1.6);
-              $('#price_evaluated').html('$' + c);
-          });
-      });
-  </script>
-  </body>
+    <!--Import jQuery before materialize.js-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+            $(".button-collapse").sideNav();
+            $('#modal_btn').click(function(){
+                var a = $('#num_switches').val();
+                var b = $('#num_plates').val();
+                var c = Math.ceil((5.5 / 60) * a * b * 1.6);
+                $('#price_evaluated').html('$' + c);
+            });
+        });
+    </script>
+</body>
 </html>
