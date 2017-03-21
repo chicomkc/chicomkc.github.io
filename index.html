@@ -11,13 +11,59 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="card">
-        Test
-      </div>
+  <nav style="background-color: #009688">
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo" style="margin: 0 0 0 16px">Chico MKC</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="">Sample Link</a></li>
+      </ul>
     </div>
+  </nav>
+  <br>
+  <div class="container">
+    <div class="row card center" style="padding:16px">
+      <div class="col m6 s12">
+        <h5>Number of switches</h5>
+      </div>
+      <div class="col m6 s12">
+        <input placeholder="62" id="num_switches" type="text">
+      </div>
+      <div class="col m6 s12">
+        <h5>Number of Plates</h5>
+      </div>
+      <div class="col m6 s12">
+        <input placeholder="5" id="num_plates" type="text">
+      </div>
+      <button class="btn waves-effect waves-light" data-target="price_modal" id='modal_btn' style="margin: 8px">Calculate
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+
+  <div id="price_modal" class="modal">
+    <div class="modal-content center">
+      <h3>Price</h3>
+      <h1 id="price_evaluated"></h1>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
   <!--Import jQuery before materialize.js-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script>
+      $(document).ready(function(){
+          $('.modal').modal();
+          $('#modal_btn').click(function(){
+              var switches = $('#num_switches').val();
+              var plates = $('#num_plates').val();
+              var price = Math.ceil((5.5 / 60) * plates * switches * 1.6);
+              $('#price_evaluated').html('$' + price);
+          });
+      });
+  </script>
   </body>
 </html>
