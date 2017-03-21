@@ -2,7 +2,7 @@
 <html>
   <head>
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -58,10 +58,10 @@
       $(document).ready(function(){
           $('.modal').modal();
           $('#modal_btn').click(function(){
-              var switches = $('#num_switches').val();
-              var plates = $('#num_plates').val();
-              var price = Math.ceil((5.5 / 60) * plates * switches * 1.6);
-              $('#price_evaluated').html('$' + price);
+              var a = $('#num_switches').val();
+              var b = $('#num_plates').val();
+              var c = Math.ceil((5.5 / 60) * a * b * 1.6);
+              $('#price_evaluated').html('$' + c);
           });
       });
   </script>
