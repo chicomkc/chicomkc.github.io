@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <!-- vvv Do not touch vvv -->
+    <nav style="background-color: #009688">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo" style="padding: 0 16px 0 16px">Chico MKC</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="Case-Calculator.html">Case Calculator</a></li>
+                <li><a href="Parts-Calculator.html">Parts Calculator</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="Case-Calculator.html">Case Calculator</a></li>
+                <li><a href="Parts-Calculator.html">Parts Calculator</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+
+    <!--Change body content here-->
+    <div class="container">
+        <div class="row card center" style="padding:16px">
+            <div class="col m6 s12">
+                <h5>Switch type</h5>
+            </div>
+            <div class="input-field col m6 s12">
+                <select id="switch_type">
+                    <option value="" disabled selected>Please Choose Your Switch Type</option>
+                    <option value="1">Cherry</option>
+                    <option value="2">Gateron</option>
+                    <option value="3">Matias</option>
+                </select>
+            </div>
+            <div class="col m6 s12">
+                <h5>Number of Switches</h5>
+            </div>
+            <div class="col m6 s12">
+                <input placeholder="62" id="num_switches" type="text">
+            </div>
+            <div class="col m6 s12">
+                <h5>Number of 2 Unit Stabilizers</h5>
+            </div>
+            <div class="col m6 s12">
+                <input placeholder="2" id="num_2_unit_stabs" type="text">
+            </div>
+            <div class="col m6 s12">
+                <h5>Number of Spacebar Stabilizers</h5>
+            </div>
+            <div class="col m6 s12">
+                <input placeholder="1" id="num_space_stabs" type="text">
+            </div>
+            <div class="col m6 s12">
+                <h5>Controller Type</h5>
+            </div>
+            <div class="input-field col m6 s12">
+                <select id="controller_type">
+                    <option value="" disabled selected>Please Choose Your Controller</option>
+                    <option value="1">Teensy 2.0</option>
+                    <option value="2">Teensy 2.0++</option>
+                    <option value="3">Pro Micro</option>
+                </select>
+            </div>
+            <div class="col m6 s12">
+                <h5>Number of Micro Controllers</h5>
+            </div>
+            <div class="col m6 s12">
+                <input placeholder="1" id="num_controllers" type="text">
+            </div>
+            <button class="btn waves-effect waves-light" data-target="price_modal" id='modal_btn' style="margin: 8px">Calculate
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+
+    <div id="price_modal" class="modal">
+        <div class="modal-content center">
+            <h3>Price</h3>
+            <h1 id="price_evaluated"></h1>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!---->
+    <!-- ^^^ Do not touch ^^^ -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        /*
+        switch type
+        switch number
+        number of 2 unit stabs
+        number of spacebar stabs
+        controller type
+            teensy 2.0
+            2.0++
+            promicro
+        controller number
+        +5
+
+         Gateron	    $0.25
+         Matias	        $0.25
+         Cherry	        $0.5
+         2u Stabs	    $1.50
+         Space stabs	$2.00
+         Teensy 2.0	    $17.00
+         Teensy 2.0 ++	$25.00
+         Pro Micro	    $4.00
+         Wire/Solder	$3.00
+         */
+        $(document).ready(function(){
+            $(".button-collapse").sideNav();
+            $('select').material_select();
+            $('.modal').modal();
+            $('#modal_btn').click(function (){
+                var switch_type = $("#switch_type").val();
+                var switch_number = $("#num_switches").val();
+                var switch_price = (switch_type == 1)? 0.50 * switch_number : (switch_type == 2 | 3)? 0.25 * switch_number : 0;
+                var two_unit_stab_price = $("#num_2_unit_stabs").val() * 1.50;
+                var space_stab_price = $("#num_space_stabs").val() * 2.00;
+                var controller_type = $("#controller_type").val();
+                var controller_number = $("#num_controllers").val();
+                var controller_price = (controller_type == 1)? 17.00 * controller_number :
+                                       (controller_type == 2)? 25.00 * controller_number :
+                                       (controller_type == 3)? 4.00 * controller_number : 0;
+                var wire_and_solder = 3.00;
+                var total = Math.ceil(switch_price + two_unit_stab_price + space_stab_price + controller_price + wire_and_solder);
+                $("#price_evaluated").html('$' + total);
+            });
+        });
+    </script>
+</body>
+</html>
